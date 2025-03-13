@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from tkinter import *
 from tkinter import messagebox
 
@@ -129,3 +130,23 @@ if __name__ == "__main__" :
      
      gui.mainloop()
      
+=======
+class ToDOList:
+    def __init__(self):
+        self.do_list = []  # Initialisation 
+
+    # Ajouter une tâche
+    def ajouter_tache(self, tache):
+        self.do_list.append({"tache": tache, "fait": False})
+        print(f"Tâche '{tache}' ajoutée !")
+
+    # Afficher toutes les tâches
+    def afficher(self):
+        if not self.do_list:
+            print("Aucune tâche dans la liste.")
+        else:
+            print("Liste des tâches :")
+            for i, tache in enumerate(self.do_list, 1):
+                statut = "✔" if tache["fait"] else "❌"
+                print(f"{i}. {tache['tache']} [{statut}]")
+>>>>>>> Stashed changes
