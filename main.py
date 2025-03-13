@@ -8,18 +8,36 @@ class ToDOList:
     def ajouter_tache(self,tache):
       self.do_list.append({"tache":tache,"fait" :False})
       print(tache)
+      print(self.do_list)
     #   enterTaskField=input("une tache ")
       if tache =="":
           messagebox.showerror("L'input ne peut pas être vide!")
       else:
           self.do_list.append({"tache": tache, "fait": False})
           print(f"Tâche ajoutée : {tache}")
+    
+    def afficher_tache(self,tache):
+      self.tache=tache
+      if not self.do_list:
+       return "Aucune tâche enregistrée."
+      else:
+       
+          return "\n".join([f"{i+1}. {task['tache']}" for i, task in enumerate(self.do_list)])
+
+
+         
+
 
           
     
 def submit_task(enterTaskField, todo):
     task=enterTaskField.get()
     todo.ajouter_tache(task)
+    enterTaskField.delete(0, END)
+def update_task_display():
+    TextArea.delete(1.0,END)    
+    TextArea.insert(1.0,todo.afficher_tache)
+
         
        
       
@@ -45,9 +63,6 @@ def delete():
 def exit():
      pass
 
-
-def afficher_tache():
-     pass
 
 
 
@@ -92,7 +107,7 @@ if __name__ == "__main__" :
 
      taskNumberField = Text(gui, height= 1, width=2, font="lucida 13")
 
-     TextArea = Text(gui, height = 5, width = 25, font = "lucida 13")
+     TextArea = Text(gui, height = 5, width = 25, font = "lucida 13" ,wrap=WORD )
 
      Submit = Button(gui, text = "Submit", fg = "Black", bg = "Red", command = lambda: submit_task(enterTaskField, todo))
      
@@ -108,7 +123,7 @@ if __name__ == "__main__" :
      taskNumberField.grid(row = 5, column = 2)
 
      Submit.grid(row = 2, column = 2)
-     Exit.grid(row = 7, column = 2)
+     Exit.grid(row = 5, column = 2)
          
      #demarrage
      
